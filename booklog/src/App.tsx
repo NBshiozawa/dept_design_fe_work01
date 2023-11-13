@@ -1,33 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { useState } from 'react'
+import { MOCK_DATA } from './mockdata'
+import { BookItem } from './types'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [bookItem, setBookItem] = useState<BookItem[]>(MOCK_DATA.items)
+
+  const Book = (bookInfo: BookItem): JSX.Element => {
+    return (
+      <>
+        <ul className="booklist">
+          <li className="listitem" key={bookInfo.id}>
+            {bookInfo.volumeInfo.imageLinks && (
+              <div className="thumbnail">
+                <img src={bookInfo.volumeInfo.imageLinks.smallThumbnail} alt={bookInfo.volumeInfo.title} />
+              </div>
+            )}
+            <div className="rightblock">
+              <h2 className="title">{bookInfo.volumeInfo.title}</h2>
+              {bookInfo.volumeInfo.description && <p className="description">{bookInfo.volumeInfo.description}</p>}
+              <div className="sub-info">
+                {bookInfo.volumeInfo.authors && <p>著者: {bookInfo.volumeInfo.authors.join(`, `)}</p>}
+                {bookInfo.volumeInfo.publisher && <p>出版社: {bookInfo.volumeInfo.publisher}</p>}
+              </div>
+              {bookInfo.volumeInfo.previewLink && (
+                <div className="preview-link-box">
+                  <a className="preview-link" href={bookInfo.volumeInfo.previewLink} target="_blank">
+                    詳しく見る
+                  </a>
+                </div>
+              )}
+            </div>
+          </li>
+        </ul>
+      </>
+    )
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Book id={bookItem[0].id} volumeInfo={bookItem[0].volumeInfo} />
     </>
   )
 }
