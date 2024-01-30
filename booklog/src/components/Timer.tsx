@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import styles from './Timer.module.css'
 
 const times: number[] = [5, 10, 15]
+// ゼロ埋め
 const zeroPadding = (time: number) => {
   return String(time).padStart(2, '0')
 }
@@ -14,8 +15,10 @@ export const Timer = () => {
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     setCountTime(Number(selectRef.current?.value))
+    // Number型に変換（型エラーでNumber使用しましたがこれで良いのかの状態
     setIsStart(true)
   }
+  // selectのrefの値をbuttonクリックでカウントダウン時間にセットしてタイマースタート...的なことをやろうとしています
 
   useEffect(() => {
     const countDown = setInterval(() => {
