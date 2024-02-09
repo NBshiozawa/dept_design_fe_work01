@@ -8,10 +8,6 @@
   align-items: baseline;
 }
 
-.countblock p + p {
-  margin-left: 16px;
-}
-
 .timerform {
   display: flex;
   margin-left: 16px;
@@ -21,6 +17,12 @@
   font-size: 20px;
   font-weight: bold;
   letter-spacing: 0.05em;
+  margin: 0 0.05em;
+}
+
+.isEnd {
+  color: #e92f2f;
+  font-weight: bold;
 }
 
 .selectbox {

@@ -10,39 +10,50 @@ const zeroPadding = (time: number) => {
 export const Timer = () => {
   const [countTime, setCountTime] = useState<number>(0)
   const [isStart, setIsStart] = useState<boolean>(false)
+  const [isEnd, setIsEnd] = useState<boolean>(false)
   const selectRef = useRef<HTMLSelectElement>(null)
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     setCountTime(Number(selectRef.current?.value))
-    // Number型に変換（型エラーでNumber使用しましたがこれで良いのかの状態
     setIsStart(true)
   }
-  // selectのrefの値をbuttonクリックでカウントダウン時間にセットしてタイマースタート...的なことをやろうとしています
 
   useEffect(() => {
     const countDown = setInterval(() => {
       if (isStart && countTime > 0) {
         setCountTime(countTime - 1)
       }
-      if (countTime === 0) {
+      if (isStart && countTime === 0) {
         clearInterval(countDown)
         setIsStart(false)
+        setIsEnd(true)
       }
     }, 1000)
 
     return () => {
       clearInterval(countDown)
+      setIsEnd(false)
     }
   }, [countTime])
+
+  const countText = () => {
+    if (isEnd) {
+      return <p className={styles.isEnd}>読書タイマー 終了</p>
+    } else {
+      return (
+        <p>
+          読書タイマー 残り
+          <span className={styles.countnum}>{zeroPadding(countTime)}</span>秒
+        </p>
+      )
+    }
+  }
 
   return (
     <>
       <div className={styles.timer}>
-        <div className={styles.countblock}>
-          <p>読書タイマー</p>
-          <p className={styles.countnum}>00:00:{zeroPadding(countTime)}</p>
-        </div>
+        <div className={styles.countblock}>{countText()}</div>
         <form className={styles.timerform}>
           <select className={styles.selectbox} ref={selectRef}>
             {times.map((time) => (
