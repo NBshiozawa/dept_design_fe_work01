@@ -17,14 +17,17 @@ export const Timer = () => {
     e.preventDefault()
     setCountTime(Number(selectRef.current?.value))
     setIsStart(true)
+    setIsEnd(false)
   }
 
   useEffect(() => {
+    // isStartがtrueではない場合は、以降の処理をさせないようにする
+    if (!isStart) return
     const countDown = setInterval(() => {
-      if (isStart && countTime > 0) {
+      // if (!isStart) return によって、isStart=trueの場合のみ以降の処理が実施されることになるため、isStart && の記述は不要に
+      if (countTime - 1 > 0) {
         setCountTime(countTime - 1)
-      }
-      if (isStart && countTime === 0) {
+      } else {
         clearInterval(countDown)
         setIsStart(false)
         setIsEnd(true)
@@ -33,7 +36,6 @@ export const Timer = () => {
 
     return () => {
       clearInterval(countDown)
-      setIsEnd(false)
     }
   }, [countTime])
 
