@@ -1,9 +1,21 @@
 .main {
+  display: flex;
+  flex-direction: column;
   margin: 0 auto;
-  padding: 64px 32px 32px;
+  padding: 64px 32px 0;
   max-width: 784px;
+  height: 100vh;
 }
 
 .search {
   padding: 40px 0 8px;
+}
+
+.totalCount {
+  margin: 16px 0;
+}
+
+.booklist {
+  overflow: scroll;
+  padding-bottom: 32px;
 }

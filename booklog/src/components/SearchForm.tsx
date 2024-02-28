@@ -1,22 +1,25 @@
-import { useRef } from 'react'
+// import { useRef } from 'react'
+import { forwardRef } from 'react'
 import styles from './SearchForm.module.css'
 
-export const SearchForm = () => {
-  const inputRef = useRef<HTMLInputElement>(null)
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    alert(`"${inputRef.current?.value}" で検索しました。`)
-  }
+type Props = {
+  onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+}
+
+export const SearchForm = forwardRef<HTMLInputElement, Props>(({ onSubmit }, ref) => {
+  // Content から SearchForm に ref を渡すため、forwardRef でラップするように変更
+  // const inputRef = useRef<HTMLInputElement>(null)
+
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     e.target.select()
   }
 
   return (
-    <form onSubmit={handleSubmit} className={styles.searchform}>
+    <form onSubmit={onSubmit} className={styles.searchform}>
       <input
         onFocus={handleFocus}
         className={styles.input}
-        ref={inputRef}
+        ref={ref}
         type="text"
         id="query"
         name="query"
@@ -27,4 +30,4 @@ export const SearchForm = () => {
       </button>
     </form>
   )
-}
+})
