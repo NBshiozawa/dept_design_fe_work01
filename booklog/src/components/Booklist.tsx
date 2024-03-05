@@ -1,11 +1,15 @@
-import { useState } from 'react'
-import { MOCK_DATA } from '../mockdata'
+// import { useState } from 'react'
+// import { MOCK_DATA } from '../mockdata'
 import { BookItem } from '../types'
 import { Book } from './Book'
 import styles from './Booklist.module.css'
 
-export const Booklist = () => {
-  const [bookItem, setBookItem] = useState<BookItem[]>(MOCK_DATA.items)
+type Props = {
+  bookItem: BookItem[]
+}
+
+export const Booklist = ({ bookItem }: Props) => {
+  // const [bookItem, setBookItem] = useState<BookItem[]>([])
 
   return (
     <ul className={styles.booklist}>
