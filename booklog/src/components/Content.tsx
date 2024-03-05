@@ -49,7 +49,7 @@ const Content = () => {
         // dataで受け取った値をそれぞれ bookItem と total に格納
 
         bookItem ? setBookItem(bookItem) : setBookItem([])
-        // bookItem を set（ヒットしない場合は空の配列をsetする...？）
+        // bookItem を set（ヒットしない場合は空の配列をsetする）
 
         setTotal(total)
         // total を set
@@ -59,8 +59,10 @@ const Content = () => {
         // fetchBookData で throw したエラーを出力
       })
 
-    console.log(fetchBookData())
+    // console.log(fetchBookData())
     // Promise {<pending>} のまま...？
+    // → この書き方だと45行目のfetchBookDataとは別に、この記述内で呼び出されていることになるため pending になっている
+    //   流れを確認するなら、then メソッド内でそのまま引数を出力するようにする
   }
 
   const totalCount = () => {
