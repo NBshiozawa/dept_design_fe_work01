@@ -1,5 +1,4 @@
 # React + Vite
-
 このディレクトリは、dept_design_feがReactについて学習を行うためのものです。
 簡単なシングルページの書籍検索アプリケーションの作成を通じて、主に以下のような知識を身につけることができます。
 
@@ -8,11 +7,9 @@
 - LocalStorageを使用した、データの永続化
 
 ## 環境に関して
-
 開発環境には「Docker + Dev Containers + Vite」を利用しています。これらの環境構築に関しては、[こちら](https://github.com/newbeescoltd/nb_study_react)のワークショップで詳しく扱っているため、必要な方は確認してください。
 
 ### 環境構築方法
-
 VSCodeで`dept_design_fe_work01`ディレクトリを開いて、Dev Containersを使用してコンテナを起動してください。
 (`command+shift+P`で出てくるコマンドパレットにて、`Reopen in Container`を入力。)
 
@@ -58,10 +55,10 @@ VSCodeで`dept_design_fe_work01`ディレクトリを開いて、Dev Containers�
 6. モックデータを使用して、Mybooksのリストを作成します。
 7. MyBooksへの書籍情報の追加・削除機能を実装します。
    - useStateを使用して、MyBooksのstate管理をする形で実装を行なってください。
-   - 可能であればuseContextを使用して、複数のcomponentで状態を共有できるようにすると良いと思います。
+   - 親となるコンポーネントでstate管理を行う形などでも問題ありませんが、もし余裕があればカスタムフックやuseContextを使用すると良いと思います。
 8. step7で実装した追加・削除機能を、localStorageを利用する形に変更します。
    - チャレンジstepです。可能であればチャレンジしてください。
-   - 複数のcomponentで状態を共有できるよう、useContextも使用してみてください。
+   - もし余裕があればカスタムフックやuseContextも使用してみてください。
 
 ### 補足
 - スタイルは目標物と違っても大丈夫です。
