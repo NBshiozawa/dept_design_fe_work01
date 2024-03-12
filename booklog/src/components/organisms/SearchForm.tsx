@@ -1,4 +1,3 @@
-// import { useRef } from 'react'
 import { forwardRef } from 'react'
 import styles from './SearchForm.module.css'
 
@@ -8,7 +7,6 @@ type Props = {
 
 export const SearchForm = forwardRef<HTMLInputElement, Props>(({ onSubmit }, ref) => {
   // Content から SearchForm に ref を渡すため、forwardRef でラップするように変更
-  // const inputRef = useRef<HTMLInputElement>(null)
 
   const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
     e.target.select()

@@ -1,9 +1,11 @@
 import { useState, useRef } from 'react'
-import { BookItem } from '../types'
+import { BookItem } from '../../types'
 import styles from './Content.module.css'
-import { Header } from './Header'
-import { Booklist } from './Booklist'
-import { SearchForm } from './SearchForm'
+import { Header } from '../organisms/Header'
+import { Booklist } from '../organisms/Booklist'
+import { SearchForm } from '../organisms/SearchForm'
+import { MOCK_DATA } from '../../mockdata'
+import { MyBooklist } from '../organisms/MyBooklist'
 
 // 取得するjsonの型を定義（ドキュメントから確認できる）
 // キーワードがヒットしない場合は"kind", "totalItems"のみ返ってくるため、"items"はoptionalとする
@@ -58,11 +60,6 @@ const Content = () => {
         console.error(error)
         // fetchBookData で throw したエラーを出力
       })
-
-    // console.log(fetchBookData())
-    // Promise {<pending>} のまま...？
-    // → この書き方だと45行目のfetchBookDataとは別に、この記述内で呼び出されていることになるため pending になっている
-    //   流れを確認するなら、then メソッド内でそのまま引数を出力するようにする
   }
 
   const totalCount = () => {
@@ -84,15 +81,20 @@ const Content = () => {
   return (
     <>
       <Header />
-      <main className={styles.main}>
-        <div className={styles.search}>
-          <SearchForm ref={inputRef} onSubmit={handleSubmit} />
-          <div className={styles.totalCount}>{totalCount()}</div>
-        </div>
-        <div className={styles.booklist}>
-          <Booklist bookItem={bookItem} />
-        </div>
-      </main>
+      <div className={styles.content}>
+        <aside className={styles.sideContent}>
+          <MyBooklist myBookItem={MOCK_DATA.items} />
+        </aside>
+        <main className={styles.mainContent}>
+          <div className={styles.search}>
+            <SearchForm ref={inputRef} onSubmit={handleSubmit} />
+            <div className={styles.totalCount}>{totalCount()}</div>
+          </div>
+          <div className={styles.booklist}>
+            <Booklist bookItem={bookItem} />
+          </div>
+        </main>
+      </div>
     </>
   )
 }

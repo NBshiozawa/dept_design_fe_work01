@@ -1,0 +1,35 @@
+.listitem {
+  display: flex;
+  padding: 32px 0;
+}
+
+.listitem + .listitem {
+  border-top: solid 1px rgba(0, 0, 0, 0.1);
+}
+
+.thumbnailWrapper {
+  margin-right: 24px;
+}
+
+.infoblock {
+  padding: 0 24px;
+  width: 100%;
+}
+.title {
+  margin-bottom: 8px;
+}
+
+.description {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.subInfoWrapper {
+  margin-top: 16px;
+}
+
+.previewLinkWrapper {
+  margin-top: 16px;
+}

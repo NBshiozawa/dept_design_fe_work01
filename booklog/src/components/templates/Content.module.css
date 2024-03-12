@@ -1,0 +1,36 @@
+.content {
+  display: flex;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 64px 32px 0;
+  width: 100%;
+  max-width: 1024px;
+  height: 100vh;
+}
+
+.sideContent {
+  background-color: #fafafa;
+  border-right: solid 1px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+  overflow: scroll;
+  padding: 64px 32px 32px;
+  width: 320px;
+  height: 100vh;
+}
+
+.search {
+  padding: 40px 0 8px;
+}
+
+.totalCount {
+  margin: 16px 0;
+}
+
+.booklist {
+  overflow: scroll;
+  padding-bottom: 32px;
+}
