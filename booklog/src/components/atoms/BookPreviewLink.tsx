@@ -7,9 +7,11 @@ type Props = {
 export const BookPreviewLink = ({ previewLink }: Props): JSX.Element => {
   return (
     <>
-      <a className={styles.previewLink} href={previewLink} target="_blank">
-        詳しく見る
-      </a>
+      {previewLink === undefined ? null : (
+        <a className={styles.previewLink} href={previewLink} target="_blank">
+          詳しく見る
+        </a>
+      )}
     </>
   )
 }
