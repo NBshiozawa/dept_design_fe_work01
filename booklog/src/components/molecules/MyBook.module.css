@@ -1,0 +1,22 @@
+.listitem {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 0;
+}
+
+.infoblock {
+  width: 100%;
+}
+
+.title {
+  margin-bottom: 8px;
+  font-size: 1em;
+}
+
+.subInfoWrapper {
+  margin-top: 8px;
+}
+
+.previewLinkWrapper {
+  margin-top: 16px;
+}

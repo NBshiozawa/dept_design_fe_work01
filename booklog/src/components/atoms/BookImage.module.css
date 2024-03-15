@@ -1,0 +1,19 @@
+.thumbnail {
+  flex-shrink: 0;
+  width: 128px;
+}
+
+.thumbnail img {
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.noImage {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+}
