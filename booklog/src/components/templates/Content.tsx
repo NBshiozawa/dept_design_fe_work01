@@ -4,7 +4,6 @@ import styles from './Content.module.css'
 import { Header } from '../organisms/Header'
 import { Booklist } from '../organisms/Booklist'
 import { SearchForm } from '../organisms/SearchForm'
-import { MOCK_DATA } from '../../mockdata'
 import { MyBooklist } from '../organisms/MyBooklist'
 
 // 取得するjsonの型を定義（ドキュメントから確認できる）
@@ -17,6 +16,7 @@ type BookData = {
 
 const Content = () => {
   const [bookItem, setBookItem] = useState<BookItem[]>([])
+  const [myBookItem, setMyBookItem] = useState<BookItem[]>([])
   const [total, setTotal] = useState<number>(0)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -71,11 +71,23 @@ const Content = () => {
       return (
         <>
           <p>{total}件の書籍が見つかりました。</p>
-          {total >= 10 && <p>そのうち10件を表示します。</p>}
-          {/* 返される結果の最大数が10件のため、2行目のテキストは10件以上ヒットした場合のみ表示 */}
+          {total > 10 && <p>そのうち10件を表示します。</p>}
+          {/* 返される結果の最大数が10件のため、2行目のテキストは11件以上ヒットした場合のみ表示 */}
         </>
       )
     }
+  }
+
+  // MyBooksに追加
+  const addBook = (index: number, bookId: string) => {
+    if (myBookItem.some((myBook) => myBook.id === bookId)) {
+      alert(`この書籍はMyBooksに追加済みです。`)
+    } else setMyBookItem([...myBookItem, bookItem[index]])
+  }
+
+  // MyBooksから削除
+  const removeBook = (bookId: string) => {
+    setMyBookItem(myBookItem.filter((myBook) => myBook.id !== bookId))
   }
 
   return (
@@ -83,7 +95,8 @@ const Content = () => {
       <Header />
       <div className={styles.content}>
         <aside className={styles.sideContent}>
-          <MyBooklist myBookItem={MOCK_DATA.items} />
+          <h2 className={styles.sideContentTitle}>MyBooks</h2>
+          <MyBooklist myBookItem={myBookItem} removeBook={removeBook} />
         </aside>
         <main className={styles.mainContent}>
           <div className={styles.search}>
@@ -91,7 +104,7 @@ const Content = () => {
             <div className={styles.totalCount}>{totalCount()}</div>
           </div>
           <div className={styles.booklist}>
-            <Booklist bookItem={bookItem} />
+            <Booklist bookItem={bookItem} addBook={addBook} />
           </div>
         </main>
       </div>

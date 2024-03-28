@@ -18,8 +18,15 @@
   flex-shrink: 0;
   overflow: scroll;
   padding: 64px 32px 32px;
-  width: 320px;
+  width: 328px;
   height: 100vh;
+}
+
+.sideContentTitle {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 1em;
+  letter-spacing: 0.1em;
+  margin-top: 32px;
 }
 
 .search {

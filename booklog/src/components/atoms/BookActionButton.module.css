@@ -1,0 +1,19 @@
+.actionButton {
+  display: inline-block;
+  background-color: #e3713d;
+  border-radius: 8px;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px 16px;
+  transition: background 0.2s;
+}
+
+.actionButton:hover {
+  background-color: #d75c23;
+}
+
+.actionButton:focus-visible {
+  outline-color: #b34512;
+}
