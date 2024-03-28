@@ -1,26 +1,28 @@
 import { BookItem } from '../../types'
 import { BookImage } from '../atoms/BookImage'
 import { BookSubInfo } from '../atoms/BookSubInfo'
-import { BookPreviewLink } from '../atoms/BookPreviewLink'
+import { ButtonList } from './ButtonList'
 import styles from './MyBook.module.css'
 
-export const MyBook = ({ title, imageLinks, authors, previewLink }: BookItem[`volumeInfo`]) => {
+type Props = {
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
+}
+
+export const MyBook = ({ title, imageLinks, authors, previewLink, onClick }: BookItem[`volumeInfo`] & Props) => {
   return (
     <>
       <li className={styles.listitem}>
         <BookImage imageLinks={imageLinks} title={title} />
         <div className={styles.infoblock}>
-          <h2 className={styles.title}>{title}</h2>
+          <h3 className={styles.title}>{title}</h3>
           {authors && (
             <div className={styles.subInfoWrapper}>
               <BookSubInfo authors={authors} />
             </div>
           )}
-          {previewLink && (
-            <div className={styles.previewLinkWrapper}>
-              <BookPreviewLink previewLink={previewLink} />
-            </div>
-          )}
+          <div className={styles.buttonListWrapper}>
+            <ButtonList previewLink={previewLink} buttonLabel="MyBooksから削除" onClick={onClick} />
+          </div>
         </div>
       </li>
     </>
