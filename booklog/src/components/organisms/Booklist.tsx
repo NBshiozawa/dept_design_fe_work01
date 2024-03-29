@@ -4,13 +4,14 @@ import styles from './Booklist.module.css'
 
 type Props = {
   bookItem: BookItem[]
+  addBook: (index: number, bookId: string) => void
 }
 
-export const Booklist = ({ bookItem }: Props) => {
+export const Booklist = ({ bookItem, addBook }: Props) => {
   return (
     <ul className={styles.booklist}>
-      {bookItem.map((book) => (
-        <Book {...book.volumeInfo} key={book.id} />
+      {bookItem.map((book, index) => (
+        <Book {...book.volumeInfo} key={book.id} onClick={() => addBook(index, book.id)} />
       ))}
     </ul>
   )

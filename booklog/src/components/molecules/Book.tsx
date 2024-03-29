@@ -2,7 +2,11 @@ import { BookItem } from '../../types'
 import styles from './Book.module.css'
 import { BookSubInfo } from '../atoms/BookSubInfo'
 import { BookImage } from '../atoms/BookImage'
-import { BookPreviewLink } from '../atoms/BookPreviewLink'
+import { ButtonList } from './ButtonList'
+
+type Props = {
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
+}
 
 export const Book = ({
   title,
@@ -11,7 +15,8 @@ export const Book = ({
   publisher,
   imageLinks,
   previewLink,
-}: BookItem['volumeInfo']): JSX.Element => {
+  onClick,
+}: BookItem['volumeInfo'] & Props): JSX.Element => {
   return (
     <>
       <li className={styles.listitem}>
@@ -24,11 +29,9 @@ export const Book = ({
               <BookSubInfo authors={authors} publisher={publisher} />
             </div>
           )}
-          {previewLink && (
-            <div className={styles.previewLinkWrapper}>
-              <BookPreviewLink previewLink={previewLink} />
-            </div>
-          )}
+          <div className={styles.buttonListWrapper}>
+            <ButtonList previewLink={previewLink} buttonLabel="MyBooksに追加" onClick={onClick} />
+          </div>
         </div>
       </li>
     </>

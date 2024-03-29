@@ -5,18 +5,19 @@
 }
 
 .infoblock {
+  margin-top: 8px;
   width: 100%;
 }
 
 .title {
-  margin-bottom: 8px;
   font-size: 1em;
+  margin: 0;
 }
 
 .subInfoWrapper {
-  margin-top: 8px;
+  margin-top: 4px;
 }
 
-.previewLinkWrapper {
+.buttonListWrapper {
   margin-top: 16px;
 }
